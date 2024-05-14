@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Quản lý sp OOP</title>
+</head>
+<body>
+<button onclick="showList()">List</button>
+<button onclick="getAdd()">Add</button>
+<div id="disp"></div>
+<script>
+    let list = [
+        {
+            name: 'Milk',
+            price: 50
+        },
+        {
+            name: 'Juice',
+            price: 80
+        }
+    ];
+    showList();
+
+    function showList() {
+        let str = '<h1>Danh sách sản phẩm</h1>';
+        str += `<p>Số lượng sản phẩm: ${list.length}</p>`;
+        for (let i = 0; i < list.length; i++) {
+            str += `<h3>${list[i].name}, ${list[i].price}<br> <button onclick="edit(${i})">Edit</button></h3>`
+            document.getElementById('disp').innerHTML = str;
+        }
+    }
+
+    function getAdd() {
+        let str = `<input id="name" placeholder="name">
+                   <input id="price" placeholder="price">
+                   <button onclick="creat()">Creat</button>`
+        document.getElementById('disp').innerHTML = str;
+    }
+
+    function creat() {
+        let name = document.getElementById('name').value;
+        let price = document.getElementById('price').value;
+        list.push({name: name, price: price});
+        showList();
+    }
+
+    function edit(index) {
+        let str = `<input id="name" value="${list[index].name}">
+                   <input id="price" value="${list[index].price}">
+                   <button onclick="save(${index})">Save</button>`
+        document.getElementById('disp').innerHTML = str;
+    }
+
+    function save() {
+        let name = document.getElementById('name').value;
+        let price = document.getElementById('price').value;
+        list.push({name: name, price: price});
+        showList();
+    }
+</script>
+</body>
+</html>
