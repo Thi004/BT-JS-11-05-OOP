@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Book Store</title>
+</head>
+<body>
+<h1>DANH SÁCH SẢN PHẨM</h1>
+<button onclick="showList()">List Book</button>
+<button onclick="getAdd()">Add New</button>
+<div id="disp"></div>
+<script>
+    let list = [
+        {
+            name: 'Truyện tranh',
+            price: 89,
+            count: 100
+        },
+        {
+            name: 'Mỹ thuật',
+            price: 120,
+            count: 50
+        },
+        {
+            name: 'Tiếng Anh',
+            price: 200,
+            count: 110
+        }
+    ];
+    showList();
+    function showList(){
+        let str =``;
+        str += `<h5>Số lượng sản phẩm: ${list.length}</h5>`;
+        for (let i = 0; i < list.length; i++) {
+            str += `<h3>${list[i].name}, ${list[i].price}K, ${list[i].count} quyển <button onclick="edit(${i})">Edit</button> <br></h3>`
+            document.getElementById('disp').innerHTML = str ;
+        }
+    }
+    function getAdd(){
+        let str = `<input id="name" placeholder="name">
+                   <input id="price" placeholder="price">
+                   <input id="count" placeholder="count">
+                   <button onclick="add()">Add</button>`;
+        document.getElementById('disp').innerHTML = str;
+    }
+    function add(){
+        let name = document.getElementById('name').value;
+        let price = document.getElementById('price').value;
+        let count = document.getElementById('count').value;
+        list.push({name: name,price: price,count: count});
+        showList();
+    }
+    function edit(index){
+        let str = `<input id="name" placeholder="name" value="${list[index].name}">
+                   <input id="price" placeholder="price" value="${list[index].price}">
+                   <input id="count" placeholder="count" value="${list[index].count}">
+                   <button onclick="save()">Save</button>`;
+        document.getElementById('disp').innerHTML = str;
+    }
+    function save(){
+        let name = document.getElementById('name').value;
+        let price = document.getElementById('price').value;
+        let count = document.getElementById('count').value;
+        list.push({name: name,price: price,count: count});
+        showList();
+    }
+</script>
+</body>
+</html>
